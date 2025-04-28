@@ -1,75 +1,56 @@
 import SwiftUI
 
 // Model
-struct Bet: Identifiable, Codable {
-    let id = UUID()
-    let title: String
-    let url: String
-}
-
-struct BettingSite: Identifiable, Codable {
+struct Provider: Identifiable {
     let id = UUID()
     let name: String
-    let logoUrl: String
-    let bets: [Bet]
 }
 
 // ViewModel
 class BettingViewModel: ObservableObject {
-    @Published var sites: [BettingSite] = []
-    
-    init() {
-        fetchBets()
-    }
-    
-    func fetchBets() {
-        // Example static data. Replace with your API fetching code.
-        guard let url = URL(string: "https://yourbackend.com/api/top-bets") else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                do {
-                    let sites = try JSONDecoder().decode([BettingSite].self, from: data)
-                    DispatchQueue.main.async {
-                        self.sites = sites
-                    }
-                } catch {
-                    print("Decoding error:", error)
-                }
-            }
-        }.resume()
-    }
+    @Published var providers: [Provider] = [
+        Provider(name: "Betfair"),
+        Provider(name: "Pinnacle"),
+        Provider(name: "Smarkets")
+    ]
 }
 
 // SwiftUI View
 struct ContentView: View {
     @StateObject var viewModel = BettingViewModel()
+    @State private var selectedProvider: Provider? = nil
     
     var body: some View {
         NavigationView {
-            List(viewModel.sites) { site in
-                Section(header: HStack {
-                    AsyncImage(url: URL(string: site.logoUrl)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(width: 40, height: 40)
-                    Text(site.name)
-                        .font(.headline)
+            List(viewModel.providers) { provider in
+                Button(action: {
+                    selectedProvider = provider
                 }) {
-                    ForEach(site.bets) { bet in
-                        Button(action: {
-                            if let url = URL(string: bet.url) {
-                                UIApplication.shared.open(url)
-                            }
-                        }) {
-                            Text(bet.title)
-                        }
-                    }
+                    Text(provider.name)
+                        .font(.headline)
+                        .padding()
                 }
             }
-            .navigationTitle("Top Bets")
+            .navigationTitle("Providers")
+            
+            // Detail View
+            if let provider = selectedProvider {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("\(provider.name) API Info")
+                        .font(.largeTitle)
+                        .bold()
+                    Text("Here you'll add \(provider.name)'s API information later.")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding()
+                .navigationTitle(provider.name)
+            } else {
+                Text("Select a Provider")
+                    .font(.title)
+                    .foregroundColor(.gray)
+            }
         }
     }
 }
