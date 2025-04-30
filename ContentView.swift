@@ -60,11 +60,12 @@ class BettingViewModel: ObservableObject {
                 Bet(description: "Wander Franco to come back to baseball", odds: "+10000")
             ],
             .NFL: [
-                Bet(description: "Josh Allen to rush for a TD", odds: "+0"),
-                Bet(description: "Davante Adams to catch 2 TDs", odds: "+0"),
-                Bet(description: "Joe Burrow to throw 350+ yards", odds: "+0"),
-                Bet(description: "George Kittle to score", odds: "+0"),
-                Bet(description: "TJ Watt to sack 2 times", odds: "+0")
+                Bet(description: "Saquon Barkely O/U 1.5 RTDS", odds: "OVER +120, UNDER +250"),
+                Bet(description: "Derrick Henry to rush 100+ yards", odds: "+320"),
+                Bet(description: "Tyreek Hill to hit free agency", odds: "+100"),
+                Bet(description: "Travis Kelce to catch 8+ passes", odds: "+40"),
+                Bet(description: "Aaron Donald to record 2 sacks", odds: "+230"),
+                Bet(description: "Ashton Jeanty to be a bust", odds: "+ 250")
             ],
             .NBA: [
                 Bet(description: "Ja Morant to dunk twice", odds: "+0"),
