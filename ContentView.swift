@@ -134,7 +134,7 @@ struct ContentView: View {
                         .padding()
                 }
             }
-            .navigationTitle("Providers")
+            .navigationTitle("Betting Apps")
             
             if let provider = selectedProvider {
                 VStack(alignment: .leading, spacing: 20) {
@@ -169,7 +169,7 @@ struct ContentView: View {
                 .padding()
                 .navigationTitle(provider.name)
             } else {
-                Text("Select a Provider")
+                Text("Select a Betting App")
                     .font(.title)
                     .foregroundColor(.gray)
             }
