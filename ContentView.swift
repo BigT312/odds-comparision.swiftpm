@@ -30,9 +30,10 @@ class BettingViewModel: ObservableObject {
             .NFL: [
                 Bet(description: "Saquon Barkely O/U 1.5 RTDS", odds: "OVER +100, UNDER +200"),
                 Bet(description: "Derrick Henry to rush 100+ yards", odds: "+340"),
-                Bet(description: "Tyreek Hill to hit free agency", odds: "+0"),
-                Bet(description: "Travis Kelce to catch 8+ passes", odds: "+0"),
-                Bet(description: "Aaron Donald to record 2 sacks", odds: "+0")
+                Bet(description: "Tyreek Hill to hit free agency", odds: "+150"),
+                Bet(description: "Travis Kelce to catch 8+ passes", odds: "+35"),
+                Bet(description: "Aaron Donald to record 2 sacks", odds: "+250"),
+                Bet(description: "Ashton Jeanty to be a bust", odds: "+ 500")
             ],
             .NBA: [
                 Bet(description: "LeBron James to score 30+ points", odds: "+0"),
