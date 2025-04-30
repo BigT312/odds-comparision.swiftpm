@@ -34,6 +34,36 @@
             endingLineNumber = "69"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6BC5869A-CD81-47E9-9290-2A7FC9B70DEC - cddbb20d9b00ef9e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationTitle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.StringProtocol&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Text&gt;)&gt; in odds_comparision.ContentView.body.getter : some"
+                  moduleName = "odds comparision.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pross8406/Documents/odds-comparision.swiftpm/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69">
+               </Location>
+               <Location
+                  uuid = "6BC5869A-CD81-47E9-9290-2A7FC9B70DEC - 9fa24d40fe927708"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;odds_comparision.Sport&gt;, Foundation.UUID, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;odds_comparision.Bet&gt;, Foundation.UUID, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0&gt;, SwiftUI.EmptyView&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.navigationTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationTitle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.StringProtocol&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Text&gt;)&gt; in odds_comparision.ContentView.body.getter : some"
+                  moduleName = "odds comparision.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pross8406/Documents/odds-comparision.swiftpm/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
