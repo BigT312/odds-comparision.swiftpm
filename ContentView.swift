@@ -16,104 +16,103 @@ struct Provider: Identifiable {
     let name: String
     let betsBySport: [Sport: [Bet]]
 }
-// Bets are us AI helped with the format
+//the bets (Info)
 class BettingViewModel: ObservableObject {
     @Published var providers: [Provider] = [
         Provider(name: "Draft Kings", betsBySport: [
             .MLB: [
-                Bet(description: "Aaron Judge to hit a home run", odds: "-100"),
-                Bet(description: "Mike Trout to get 2+ hits", odds: "+300"),
-                Bet(description: "Cubs VS Pirates run(s) in first inning", odds: "YES or NO"),
-                Bet(description: "Pete Crow Armstrong 0.5 Stolen Bases", odds: "OVER -100, UNDER +100"),
-                Bet(description: "Kyle Tucker to sign extension with Cubs before free agency", odds: "+500")
-            ],
-            .NFL: [
-                Bet(description: "Saquon Barkely O/U 1.5 RTDS", odds: "OVER +100, UNDER +200"),
-                Bet(description: "Derrick Henry to rush 100+ yards", odds: "+340"),
-                Bet(description: "Tyreek Hill to hit free agency", odds: "+150"),
-                Bet(description: "Travis Kelce to catch 8+ passes", odds: "+35"),
-                Bet(description: "Aaron Donald to record 2 sacks", odds: "+250"),
-                Bet(description: "Ashton Jeanty to be a bust", odds: "+ 500")
-            ],
-            .NBA: [
-                Bet(description: "LeBron James to score 30+ points", odds: "+0"),
-                Bet(description: "Stephen Curry to hit 5+ threes", odds: "+0"),
-                Bet(description: "Jokic to get a triple-double", odds: "+0"),
-                Bet(description: "Luka Doncic to score 25+ points", odds: "+0"),
-                Bet(description: "Tatum to grab 10+ rebounds", odds: "+0")
-            ],
-            .NHL: [
-                Bet(description: "Connor McDavid to score", odds: "+0"),
-                Bet(description: "Ovechkin to take 5+ shots", odds: "+0"),
-                Bet(description: "Crosby to assist", odds: "+0"),
-                Bet(description: "Shesterkin to make 30+ saves", odds: "+0"),
-                Bet(description: "Matthews to score 2 goals", odds: "+0")
-            ]
-        ]),
-        
-        Provider(name: "ESPN Bet", betsBySport: [
-            .MLB: [
-                Bet(description: "Pete Alonso to record 4+ TB", odds: "+250"),
-                Bet(description: "Manny Machado to get 3 RBIs", odds: "+600"),
-                Bet(description: "Yordan Alvarez to record over2 walks", odds: "+700"),
-                Bet(description: "Bo Bichette O/U 0.5 RBI(s)", odds: "+210"),
-                Bet(description: "Wander Franco to come back to baseball", odds: "+10000")
-            ],
-            .NFL: [
-                Bet(description: "Saquon Barkely O/U 1.5 RTDS", odds: "OVER +120, UNDER +250"),
-                Bet(description: "Derrick Henry to rush 100+ yards", odds: "+320"),
-                Bet(description: "Tyreek Hill to hit free agency", odds: "+100"),
-                Bet(description: "Travis Kelce to catch 8+ passes", odds: "+40"),
-                Bet(description: "Aaron Donald to record 2 sacks", odds: "+230"),
-                Bet(description: "Ashton Jeanty to be a bust", odds: "+ 250")
-            ],
-            .NBA: [
-                Bet(description: "Ja Morant to dunk twice", odds: "+0"),
-                Bet(description: "Zion Williamson to get a double-double", odds: "+0"),
-                Bet(description: "Damian Lillard to score 35+", odds: "+0"),
-                Bet(description: "Anthony Edwards to block 2 shots", odds: "+0"),
-                Bet(description: "Jimmy Butler to steal 3 balls", odds: "+0")
-            ],
-            .NHL: [
-                Bet(description: "Jack Hughes to score", odds: "+0"),
-                Bet(description: "Kaprizov to assist", odds: "+0"),
-                Bet(description: "Connor Hellebuyck to save 35+", odds: "+0"),
-                Bet(description: "Mark Stone to hit twice", odds: "+0"),
-                Bet(description: "Elias Pettersson to get 3 points", odds: "+0")
-            ]
-        ]),
-        
-        Provider(name: "Fanduel", betsBySport: [
-            .MLB: [
-                Bet(description: "Vladimir Guerrero Jr. to homer", odds: "+0"),
-                Bet(description: "Matt Olson to drive in 2", odds: "+0"),
-                Bet(description: "Corbin Burnes to strike out 10", odds: "+0"),
-                Bet(description: "Corey Seager to get 3 hits", odds: "+0"),
-                Bet(description: "Julio Rodriguez to steal 2 bases", odds: "+0")
-            ],
-            .NFL: [
-                Bet(description: "Lamar Jackson to rush 75+ yards", odds: "+0"),
-                Bet(description: "Justin Fields to throw 2+ TDs", odds: "+0"),
-                Bet(description: "Stefon Diggs to catch 100+ yards", odds: "+0"),
-                Bet(description: "TJ Hockenson to score", odds: "+0"),
-                Bet(description: "Micah Parsons to get 2 sacks", odds: "+0")
-            ],
-            .NBA: [
-                Bet(description: "Kevin Durant to hit 10+ FGs", odds: "+0"),
-                Bet(description: "Kawhi Leonard to grab 9+ rebounds", odds: "+0"),
-                Bet(description: "Paul George to hit 4+ threes", odds: "+0"),
-                Bet(description: "Jaylen Brown to block 2 shots", odds: "+0"),
-                Bet(description: "De'Aaron Fox to get 10 assists", odds: "+0")
-            ],
-            .NHL: [
-                Bet(description: "Sebastian Aho to score 2 goals", odds: "+0"),
-                Bet(description: "Roman Josi to assist twice", odds: "+0"),
-                Bet(description: "Frederik Andersen to save 28+", odds: "+0"),
-                Bet(description: "David Pastrnak to score", odds: "+0"),
-                Bet(description: "Brady Tkachuk to get 4 hits", odds: "+0")
-            ]
-        ])
-    ]
+                          Bet(description: "Aaron Judge to hit a home run", odds: "+100"),
+                          Bet(description: "Mike Trout to get 2+ hits", odds: "+300"),
+                          Bet(description: "Cubs VS Pirates run(s) in first inning", odds: "YES +100 or NO -205"),
+                          Bet(description: "Pete Crow Armstrong 0.5 Stolen Bases", odds: "OVER -50, UNDER +150"),
+                          Bet(description: "Kyle Tucker to sign extension with Cubs before free agency", odds: "+500")
+                      ],
+                      .NFL: [
+                          Bet(description: "Saquon Barkley O/U 1.5 RTDS", odds: "OVER +110, UNDER +190"),
+                          Bet(description: "Derrick Henry to rush 100+ yards", odds: "+530"),
+                          Bet(description: "Tyreek Hill to hit free agency", odds: "-105"),
+                          Bet(description: "Travis Kelce to catch 8+ passes", odds: "+100"),
+                          Bet(description: "Aaron Donald to record 2 sacks", odds: "+260")
+                      ],
+                      .NBA: [
+                          Bet(description: "LeBron James to score 30+ points", odds: "+150"),
+                          Bet(description: "Stephen Curry to hit 5+ threes", odds: "-220"),
+                          Bet(description: "Nikola Jokic to get a triple-double", odds: "+230"),
+                          Bet(description: "Luka Doncic to score 25+ points", odds: "+124"),
+                          Bet(description: "Jayson Tatum to grab 10+ rebounds", odds: "+190")
+                      ],
+                      .NHL: [
+                          Bet(description: "Connor McDavid to score", odds: "+190"),
+                          Bet(description: "Alex Ovechkin to take 5+ shots", odds: "+110"),
+                          Bet(description: "Sidney Crosby to assist", odds: "+100"),
+                          Bet(description: "Igor Shesterkin to make 30+ saves", odds: "+350"),
+                          Bet(description: "Auston Matthews to score 2 goals", odds: "+555")
+                      ]
+                  ]),
+                  
+                  Provider(name: "ESPN Bet", betsBySport: [
+                      .MLB: [
+                          Bet(description: "Aaron Judge to hit a home run", odds: "+200"),
+                          Bet(description: "Mike Trout to get 2+ hits", odds: "+250"),
+                          Bet(description: "Cubs VS Pirates run(s) in first inning", odds: "YES +100 or NO -150"),
+                          Bet(description: "Pete Crow Armstrong 0.5 Stolen Bases", odds: "OVER -20, UNDER +100"),
+                          Bet(description: "Kyle Tucker to sign extension with Cubs before free agency", odds: "+550")
+                      ],
+                      .NFL: [
+                          Bet(description: "Saquon Barkley O/U 1.5 RTDS", odds: "OVER +125, UNDER -100"),
+                          Bet(description: "Derrick Henry to rush 100+ yards", odds: "+100"),
+                          Bet(description: "Tyreek Hill to hit free agency", odds: "+124"),
+                          Bet(description: "Travis Kelce to catch 8+ passes", odds: "+140"),
+                          Bet(description: "Aaron Donald to record 2 sacks", odds: "+100")
+                      ],
+                      .NBA: [
+                          Bet(description: "LeBron James to score 30+ points", odds: "+450"),
+                          Bet(description: "Stephen Curry to hit 5+ threes", odds: "-50"),
+                          Bet(description: "Nikola Jokic to get a triple-double", odds: "+1000"),
+                          Bet(description: "Luka Doncic to score 25+ points", odds: "+805"),
+                          Bet(description: "Jayson Tatum to grab 10+ rebounds", odds: "+560")
+                      ],
+                      .NHL: [
+                          Bet(description: "Connor McDavid to score", odds: "+655"),
+                          Bet(description: "Alex Ovechkin to take 5+ shots", odds: "+545"),
+                          Bet(description: "Sidney Crosby to assist", odds: "+140"),
+                          Bet(description: "Igor Shesterkin to make 30+ saves", odds: "+135"),
+                          Bet(description: "Auston Matthews to score 2 goals", odds: "+112")
+                      ]
+                  ]),
+                  
+                  Provider(name: "Fanduel", betsBySport: [
+                      .MLB: [
+                          Bet(description: "Aaron Judge to hit a home run", odds: "+300"),
+                          Bet(description: "Mike Trout to get 2+ hits", odds: "+550"),
+                          Bet(description: "Cubs VS Pirates run(s) in first inning", odds: "YES +150 or NO -100"),
+                          Bet(description: "Pete Crow Armstrong 0.5 Stolen Bases", odds: "OVER +20, UNDER +100"),
+                          Bet(description: "Kyle Tucker to sign extension with Cubs before free agency", odds: "+350")
+                      ],
+                      .NFL: [
+                          Bet(description: "Saquon Barkley O/U 1.5 RTDS", odds: "OVER +230, UNDER -210"),
+                          Bet(description: "Derrick Henry to rush 100+ yards", odds: "+140"),
+                          Bet(description: "Tyreek Hill to hit free agency", odds: "-100"),
+                          Bet(description: "Travis Kelce to catch 8+ passes", odds: "+230"),
+                          Bet(description: "Aaron Donald to record 2 sacks", odds: "+215")
+                      ],
+                      .NBA: [
+                          Bet(description: "LeBron James to score 30+ points", odds: "+115"),
+                          Bet(description: "Stephen Curry to hit 5+ threes", odds: "+155"),
+                          Bet(description: "Nikola Jokic to get a triple-double", odds: "+200"),
+                          Bet(description: "Luka Doncic to score 25+ points", odds: "+155"),
+                          Bet(description: "Jayson Tatum to grab 10+ rebounds", odds: "+140")
+                      ],
+                      .NHL: [
+                          Bet(description: "Connor McDavid to score", odds: "+145"),
+                          Bet(description: "Alex Ovechkin to take 5+ shots", odds: "+128"),
+                          Bet(description: "Sidney Crosby to assist", odds: "+125"),
+                          Bet(description: "Igor Shesterkin to make 30+ saves", odds: "+270"),
+                          Bet(description: "Auston Matthews to score 2 goals", odds: "+305")
+                      ]
+                  ])
+              ]
+
     
     func getBets(for provider: Provider, sport: Sport) -> [Bet] {
         provider.betsBySport[sport] ?? []
@@ -126,36 +125,35 @@ struct ContentView: View {
     @State private var selectedSport: Sport = .MLB
     
     var body: some View {
-        NavigationView {
-            List(viewModel.providers) { provider in
-                Button(action: {
-                    selectedProvider = provider
-                }) {
-                    Text(provider.name)
-                        .font(.headline)
-                        .padding()
-                }
-            }
-            .navigationTitle("Betting Apps")
-            
+        VStack {
             if let provider = selectedProvider {
-                VStack(alignment: .leading, spacing: 20) {
+                // the sports
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Button("Back to Main Page") {
+                            selectedProvider = nil
+                        }
+                        .padding(8)
+                        .background(Color.blue.opacity(0.2))
+                        .cornerRadius(8)
+                        
+                        Spacer()
+                    }
+                    
                     Text("\(provider.name) Bets")
                         .font(.largeTitle)
                         .bold()
-
+                    
                     Text("Select a Sport")
                         .font(.subheadline)
-
+                    
                     Picker("Sport", selection: $selectedSport) {
                         ForEach(Sport.allCases) { sport in
                             Text(sport.rawValue).tag(sport)
                         }
                     }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(height: 150)
-                    .onChange(of: selectedSport) { _ in } // triggers UI update
-
+                    .pickerStyle(SegmentedPickerStyle())
+                    
                     List(viewModel.getBets(for: provider, sport: selectedSport)) { bet in
                         HStack {
                             Text(bet.description)
@@ -163,18 +161,43 @@ struct ContentView: View {
                             Text(bet.odds)
                                 .foregroundColor(.gray)
                         }
-                        .padding(.vertical, 4)
                     }
-
-                    Spacer()
                 }
                 .padding()
-                .navigationTitle(provider.name)
             } else {
+                // App list
                 Text("Select a Betting App")
-                    .font(.title)
-                    .foregroundColor(.gray)
+                    .font(.largeTitle)
+                    .padding()
+                
+                List(viewModel.providers) { provider in
+                    Button(action: {
+                        selectedProvider = provider
+                        selectedSport = .MLB
+                    }) {
+                        HStack {
+                            Image(provider.nameImageName)
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .cornerRadius(6)
+                            Text(provider.name)
+                                .font(.headline)
+                                .padding(.leading, 8)
+                        }
+                        .padding(4)
+                    }
+                }
             }
+        }
+    }
+}
+//AI
+extension Provider {
+    var nameImageName: String {
+        switch name {
+        case "Draft Kings": return "draft"
+        case "ESPN Bet": return "espn"
+        case "Fanduel": return "fan"        default: return "placeholder"
         }
     }
 }
