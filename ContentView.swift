@@ -110,17 +110,17 @@ class BettingViewModel: ObservableObject {
             ]
         ])
     ]
-//making favorite section
+    //making favorite section
     @Published var favoriteBets: Set<Bet> = []
-
+    
     func getBets(for provider: Provider, sport: Sport) -> [Bet] {
         provider.betsBySport[sport] ?? []
     }
-
+    
     func isFavorite(_ bet: Bet) -> Bool {
         favoriteBets.contains(bet)
     }
-
+    
     func toggleFavorite(_ bet: Bet) {
         if favoriteBets.contains(bet) {
             favoriteBets.remove(bet)
@@ -135,7 +135,7 @@ struct ContentView: View {
     @State private var selectedSport: Sport = .MLB
     @State private var selectedBetToCompare: Bet? = nil
     @State private var showingComparison = false
-//UI
+    //UI
     var body: some View {
         VStack {
             if let provider = selectedProvider {
@@ -147,24 +147,24 @@ struct ContentView: View {
                         .padding(8)
                         .background(Color.blue.opacity(0.2))
                         .cornerRadius(8)
-
+                        
                         Spacer()
                     }
-
+                    
                     Text("\(provider.name) Bets")
                         .font(.largeTitle)
                         .bold()
-
+                    
                     Text("Select a Sport")
                         .font(.subheadline)
-
+                    
                     Picker("Sport", selection: $selectedSport) {
                         ForEach(Sport.allCases) { sport in
                             Text(sport.rawValue).tag(sport)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-
+                    
                     List(viewModel.getBets(for: provider, sport: selectedSport)) { bet in
                         HStack {
                             VStack(alignment: .leading) {
@@ -173,9 +173,9 @@ struct ContentView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             }
-
+                            
                             Spacer()
-
+                            
                             VStack {
                                 Button(action: {
                                     viewModel.toggleFavorite(bet)
@@ -183,7 +183,7 @@ struct ContentView: View {
                                     Image(systemName: viewModel.isFavorite(bet) ? "star.fill" : "star")
                                         .foregroundColor(.yellow)
                                 }
-//button for compare
+                                //button for compare
                                 Button("Compare") {
                                     selectedBetToCompare = bet
                                     showingComparison = true
@@ -199,20 +199,20 @@ struct ContentView: View {
                 Text("Select a Betting App")
                     .font(.largeTitle)
                     .padding()
-
+                
                 List(viewModel.providers) { provider in
+                    
+                    
                     Button(action: {
                         selectedProvider = provider
                         selectedSport = .MLB
                     }) {
                         HStack {
                             Image(provider.nameImageName)
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(6)
                             Text(provider.name)
-                                .font(.headline)
                                 .padding(.leading, 8)
+                                .font(.largeTitle)
+                                .foregroundColor(.blue)
                         }
                         .padding(4)
                     }
@@ -228,7 +228,7 @@ struct ContentView: View {
                     Text(bet.description)
                         .font(.subheadline)
                         .padding(.bottom)
-
+                    
                     List(compareBets(for: bet), id: \.provider) { entry in
                         HStack {
                             Text(entry.provider)
@@ -237,7 +237,7 @@ struct ContentView: View {
                                 .foregroundColor(.gray)
                         }
                     }
-
+                    
                     Button("Close") {
                         showingComparison = false
                     }
@@ -247,7 +247,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     func compareBets(for bet: Bet) -> [(provider: String, odds: String)] {
         viewModel.providers.compactMap { provider in
             for bets in provider.betsBySport.values {
@@ -267,7 +267,7 @@ extension Provider {
         case "Draft Kings": return "Draft 2"
         case "ESPN Bet": return "Espn 2"
         case "Fanduel": return "Fan 2"
-        default: return "placeholder"
+        default: return name
         }
     }
 }
