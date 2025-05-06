@@ -5,7 +5,7 @@ struct Bet: Identifiable, Hashable {
     let description: String
     let odds: String
 }
-
+//AI help
 enum Sport: String, CaseIterable, Identifiable {
     case MLB, NFL, NBA, NHL
     var id: String { self.rawValue }
@@ -16,7 +16,7 @@ struct Provider: Identifiable {
     let name: String
     let betsBySport: [Sport: [Bet]]
 }
-
+//Bets
 class BettingViewModel: ObservableObject {
     @Published var providers: [Provider] = [
         Provider(name: "Draft Kings", betsBySport: [
@@ -110,7 +110,7 @@ class BettingViewModel: ObservableObject {
             ]
         ])
     ]
-
+//making favorite section
     @Published var favoriteBets: Set<Bet> = []
 
     func getBets(for provider: Provider, sport: Sport) -> [Bet] {
@@ -135,7 +135,7 @@ struct ContentView: View {
     @State private var selectedSport: Sport = .MLB
     @State private var selectedBetToCompare: Bet? = nil
     @State private var showingComparison = false
-
+//UI
     var body: some View {
         VStack {
             if let provider = selectedProvider {
@@ -183,7 +183,7 @@ struct ContentView: View {
                                     Image(systemName: viewModel.isFavorite(bet) ? "star.fill" : "star")
                                         .foregroundColor(.yellow)
                                 }
-
+//button for compare
                                 Button("Compare") {
                                     selectedBetToCompare = bet
                                     showingComparison = true
@@ -219,6 +219,7 @@ struct ContentView: View {
                 }
             }
         }
+        //for comparing bets Ai help
         .sheet(isPresented: $showingComparison) {
             if let bet = selectedBetToCompare {
                 VStack(alignment: .leading) {
@@ -259,7 +260,7 @@ struct ContentView: View {
         
     }
 }
-
+//Images
 extension Provider {
     var nameImageName: String {
         switch name {
