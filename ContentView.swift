@@ -5,7 +5,7 @@ struct Bet: Identifiable, Hashable {
     let description: String
     let odds: String
 }
-//AI help
+
 enum Sport: String, CaseIterable, Identifiable {
     case MLB, NFL, NBA, NHL
     var id: String { self.rawValue }
@@ -16,7 +16,7 @@ struct Provider: Identifiable {
     let name: String
     let betsBySport: [Sport: [Bet]]
 }
-//Bets
+
 class BettingViewModel: ObservableObject {
     @Published var providers: [Provider] = [
         Provider(name: "Draft Kings", betsBySport: [
@@ -110,7 +110,7 @@ class BettingViewModel: ObservableObject {
             ]
         ])
     ]
-    //making favorite section
+    
     @Published var favoriteBets: Set<Bet> = []
     
     func getBets(for provider: Provider, sport: Sport) -> [Bet] {
@@ -129,14 +129,36 @@ class BettingViewModel: ObservableObject {
         }
     }
 }
+
 struct ContentView: View {
     @StateObject var viewModel = BettingViewModel()
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var selectedProvider: Provider? = nil
     @State private var selectedSport: Sport = .MLB
     @State private var selectedBetToCompare: Bet? = nil
     @State private var showingComparison = false
-    //UI
+
     var body: some View {
+        TabView {
+            allBetsTab
+                .tabItem {
+                    Label("All Bets", systemImage: "list.bullet")
+                }
+            
+            favoritesTab
+                .tabItem {
+                    Label("Favorites", systemImage: "star.fill")
+                }
+
+            settingsTab
+                .tabItem {
+                    Label("Settings", systemImage: "gear")
+                }
+        }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
+    }
+    
+    private var allBetsTab: some View {
         VStack {
             if let provider = selectedProvider {
                 VStack(alignment: .leading, spacing: 16) {
@@ -175,7 +197,6 @@ struct ContentView: View {
                             }
                             
                             Spacer()
-                            
                             VStack {
                                 Button(action: {
                                     viewModel.toggleFavorite(bet)
@@ -183,13 +204,17 @@ struct ContentView: View {
                                     Image(systemName: viewModel.isFavorite(bet) ? "star.fill" : "star")
                                         .foregroundColor(.yellow)
                                 }
-                                //button for compare
-                                Button("Compare") {
+                                .buttonStyle(PlainButtonStyle())
+                                
+                                Button(action: {
                                     selectedBetToCompare = bet
                                     showingComparison = true
+                                }) {
+                                    Text("Compare")
+                                        .font(.caption)
+                                        .foregroundColor(.blue)
                                 }
-                                .font(.caption)
-                                .foregroundColor(.blue)
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
@@ -201,14 +226,12 @@ struct ContentView: View {
                     .padding()
                 
                 List(viewModel.providers) { provider in
-                    
-                    
                     Button(action: {
                         selectedProvider = provider
                         selectedSport = .MLB
                     }) {
                         HStack {
-                            Image(provider.nameImageName)
+                            Image(systemName: "app.fill")
                             Text(provider.name)
                                 .padding(.leading, 8)
                                 .font(.largeTitle)
@@ -219,7 +242,6 @@ struct ContentView: View {
                 }
             }
         }
-        //for comparing bets Ai help
         .sheet(isPresented: $showingComparison) {
             if let bet = selectedBetToCompare {
                 VStack(alignment: .leading) {
@@ -247,7 +269,57 @@ struct ContentView: View {
             }
         }
     }
-    
+
+    private var favoritesTab: some View {
+        VStack {
+            Text("Favorite Bets")
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            List(Array(viewModel.favoriteBets)) { bet in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(bet.description)
+                        Text(bet.odds)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    
+                    Spacer()
+                    HStack {
+                        Button(action: {
+                            viewModel.toggleFavorite(bet)
+                        }) {
+                            Image(systemName: viewModel.isFavorite(bet) ? "star.fill" : "star")
+                                .foregroundColor(.yellow)
+                        }
+                        
+                        Button(action: {
+                            selectedBetToCompare = bet
+                            showingComparison = true
+                        }) {
+                            Text("Compare")
+                                .font(.caption)
+                                .foregroundColor(.blue)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+        }
+        .padding()
+    }
+// AI help with dark mode 
+    private var settingsTab: some View {
+        Form {
+            Toggle(isOn: $isDarkMode) {
+                Text("Dark Mode")
+            }
+        }
+        .navigationTitle("Settings")
+    }
+
     func compareBets(for bet: Bet) -> [(provider: String, odds: String)] {
         viewModel.providers.compactMap { provider in
             for bets in provider.betsBySport.values {
@@ -257,10 +329,11 @@ struct ContentView: View {
             }
             return nil
         }
-        
     }
 }
-//Images
+
+
+// images
 extension Provider {
     var nameImageName: String {
         switch name {
@@ -271,4 +344,3 @@ extension Provider {
         }
     }
 }
-
