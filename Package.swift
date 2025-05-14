@@ -8,18 +8,18 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "odds comparision",
+    name: "Bet Comp",
     platforms: [
         .iOS("16.0")
     ],
     products: [
         .iOSApplication(
-            name: "odds comparision",
+            name: "Bet Comp",
             targets: ["AppModule"],
             bundleIdentifier: "tester.odds-comparision",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .coins),
+            appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.green),
             supportedDeviceFamilies: [
                 .pad,
