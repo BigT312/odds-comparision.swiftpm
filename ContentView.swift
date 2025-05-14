@@ -16,7 +16,7 @@ struct Provider: Identifiable {
     let name: String
     let betsBySport: [Sport: [Bet]]
 }
-
+//bets
 class BettingViewModel: ObservableObject {
     @Published var providers: [Provider] = [
         Provider(name: "Draft Kings", betsBySport: [
@@ -157,7 +157,7 @@ struct ContentView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }
-    
+    // compare and UI with buttons 
     private var allBetsTab: some View {
         VStack {
             if let provider = selectedProvider {
@@ -269,7 +269,7 @@ struct ContentView: View {
             }
         }
     }
-
+//favorites
     private var favoritesTab: some View {
         VStack {
             Text("Favorite Bets")
@@ -333,7 +333,7 @@ struct ContentView: View {
 }
 
 
-// images
+// images dont really work
 extension Provider {
     var nameImageName: String {
         switch name {
