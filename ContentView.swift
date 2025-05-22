@@ -16,7 +16,8 @@ struct Provider: Identifiable {
     let name: String
     let betsBySport: [Sport: [Bet]]
 }
-//bets
+
+@MainActor
 class BettingViewModel: ObservableObject {
     @Published var providers: [Provider] = [
         Provider(name: "Draft Kings", betsBySport: [
@@ -112,6 +113,14 @@ class BettingViewModel: ObservableObject {
     ]
     
     @Published var favoriteBets: Set<Bet> = []
+    @Published var isLoading: Bool = true
+    
+    init() {
+        // Simulate loading delay of 2 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isLoading = false
+        }
+    }
     
     func getBets(for provider: Provider, sport: Sport) -> [Bet] {
         provider.betsBySport[sport] ?? []
@@ -156,8 +165,16 @@ struct ContentView: View {
                 }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView("Loading Bets...")
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(.systemBackground).opacity(0.8))
+            }
+        }
     }
-    // compare and UI with buttons 
+    // compare and UI with buttons
     private var allBetsTab: some View {
         VStack {
             if let provider = selectedProvider {
@@ -269,7 +286,7 @@ struct ContentView: View {
             }
         }
     }
-//favorites
+    //favorites
     private var favoritesTab: some View {
         VStack {
             Text("Favorite Bets")
@@ -310,7 +327,7 @@ struct ContentView: View {
         }
         .padding()
     }
-// AI help with dark mode 
+    // AI help with dark mode
     private var settingsTab: some View {
         Form {
             Toggle(isOn: $isDarkMode) {
@@ -331,7 +348,6 @@ struct ContentView: View {
         }
     }
 }
-
 
 // images dont really work
 extension Provider {
